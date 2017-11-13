@@ -11,11 +11,12 @@ import { Component } from '@angular/core';
         </mat-card-header>
     <form>
     <mat-input-container>
-        <input matInput type = "text" placeholder = "email">
+        <input [(ngModel)]="registerData.email" matInput type = "text" name = "email">
     </mat-input-container>
     <mat-input-container>
-        <input matInput type = "password" placeholder = "password">
+        <input [(ngModel)]="registerData.pwd" matInput type = "password" name = "password">
     </mat-input-container>
+    <button (click)="post()" mat-raised-button color = "primary">Register</button>
     </form>
     </mat-card>
   ` ,
@@ -23,5 +24,8 @@ import { Component } from '@angular/core';
 })
 export class RegisterComponent {
   title = 'Register';
-
+  registerData = []
+  post(){
+    console.log(this.registerData)
+  }
 }

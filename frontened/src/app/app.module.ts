@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router'
 import { HttpModule } from "@angular/http";
 import {MatButtonModule , MatCardModule, MatToolbarModule, MatInputModule} from '@angular/material';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FormsModule } from "@angular/forms";
 
 
 import { AppComponent } from './app.component';
@@ -27,7 +28,8 @@ const router = [
     MatToolbarModule,
     RouterModule.forRoot(router),
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
