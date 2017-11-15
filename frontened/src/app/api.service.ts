@@ -13,4 +13,10 @@ export class ApiService {
             this.messages = res.json()
         })
     }
+
+    registerUser(userData){
+        this.http.post("http://localhost:3000/register", userData).subscribe(res=>{
+            console.log(res)
+        })
+    }
 }

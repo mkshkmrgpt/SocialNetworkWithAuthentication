@@ -4,6 +4,7 @@ var cors = require('cors')
 var mongoose = require('mongoose')
 
 
+mongoose.Promise = Promise
 var app = express()
 var User = require('./model/User.js')
 
@@ -22,12 +23,13 @@ app.post('/register', (req,res)=>{
 
     var userData  = req.body
     var user = new User(userData)
+    console.log(user)
 
     user.save((err,result)=>{
         if(err){
             console.log('Error creating user')
         }
-    })
+    })  
     res.sendStatus(200)
 })
 
