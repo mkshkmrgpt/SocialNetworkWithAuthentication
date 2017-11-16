@@ -2,6 +2,7 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var cors = require('cors')
 var mongoose = require('mongoose')
+var jwt = require('jwt-simple')
 
 
 mongoose.Promise = Promise
@@ -47,7 +48,9 @@ app.post('/login', async (req,res)=>{
         res.send({message:'Email or password is invalid'}).sendStatus(401)
     }
 
-    res.sendStatus(200)
+    var payload = {}
+    var token = jwt.encode(payload,'123456')
+    res.send({token:token}).sendStatus(200)
 })
 
 mongoose.connect('mongodb://test:test@ds257245.mlab.com:57245/social_network',{useMongoClient:true},(err)=>{
