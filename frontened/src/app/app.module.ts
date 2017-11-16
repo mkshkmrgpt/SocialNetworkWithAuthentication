@@ -11,14 +11,16 @@ import { AppComponent } from './app.component';
 import { ApiService } from './api.service';
 import { MessageComponent } from "./message.component";
 import { RegisterComponent } from "./register.components";
+import { LoginComponent } from "./login.component";
 
 const router = [
-  {path :'register', component : RegisterComponent}
+  {path :'register', component : RegisterComponent},
+  {path : 'login', component : LoginComponent}
 ]
 
 @NgModule({
   declarations: [
-    AppComponent, MessageComponent, RegisterComponent
+    AppComponent, MessageComponent, RegisterComponent, LoginComponent
   ],
   imports: [
     BrowserModule,

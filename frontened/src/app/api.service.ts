@@ -19,4 +19,10 @@ export class ApiService {
             console.log(res)
         })
     }
+
+    loginUser(userData){
+        this.http.post("http://localhost:3000/login", userData).subscribe(res=>{
+            console.log(res)
+        })
+    }
 }

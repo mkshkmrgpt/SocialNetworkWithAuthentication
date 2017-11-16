@@ -33,6 +33,23 @@ app.post('/register', (req,res)=>{
     res.sendStatus(200)
 })
 
+app.post('/login', async (req,res)=>{
+    var userData = req.body
+
+    var user = await User.findOne({
+        email:userData.email
+    })
+    
+    if(!user){
+        res.send({message:'Email or password is invalid'}).sendStatus(401)
+    }
+    if(userData.password!=user.password){
+        res.send({message:'Email or password is invalid'}).sendStatus(401)
+    }
+
+    res.sendStatus(200)
+})
+
 mongoose.connect('mongodb://test:test@ds257245.mlab.com:57245/social_network',{useMongoClient:true},(err)=>{
     if(!err){
         console.log('Connected to database')
