@@ -13,15 +13,18 @@ import { AuthService } from "./auth.service";
 import { MessageComponent } from "./message.component";
 import { RegisterComponent } from "./register.components";
 import { LoginComponent } from "./login.component";
+import { UsersComponent } from "./users.component";
 
 const router = [
   {path :'register', component : RegisterComponent},
-  {path : 'login', component : LoginComponent}
+  {path : 'login', component : LoginComponent},
+  {path : 'users', component : UsersComponent},
+  {path : 'profile/:id', component: UsersComponent}
 ]
 
 @NgModule({
   declarations: [
-    AppComponent, MessageComponent, RegisterComponent, LoginComponent
+    AppComponent, MessageComponent, RegisterComponent, LoginComponent,UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ const router = [
     BrowserAnimationsModule,
     FormsModule
   ],
-  providers: [ApiService, AuthService],
+  providers: [ApiService, AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

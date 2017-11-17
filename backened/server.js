@@ -53,6 +53,18 @@ app.post('/login', async (req,res)=>{
     res.send({token:token}).sendStatus(200)
 })
 
+app.get('/users', async (req,res)=>{
+    try {
+        
+    var users = await User.find({},'-password -__v')
+    res.send(users)
+
+    } catch (error) {
+        console.log(error)
+        res.send(500)    
+    }
+})
+
 mongoose.connect('mongodb://test:test@ds257245.mlab.com:57245/social_network',{useMongoClient:true},(err)=>{
     if(!err){
         console.log('Connected to database')
