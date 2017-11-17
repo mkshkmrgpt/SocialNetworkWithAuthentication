@@ -6,6 +6,8 @@ export class ApiService {
 
     messages = []
     users = []
+    profile = {}
+
     constructor(private http:Http) {
     }
 
@@ -19,6 +21,10 @@ export class ApiService {
         this.http.get('http://localhost:3000/users').subscribe(res=>{
             this.users = res.json();
         })
+    }
+
+    getUserProfile(id){
+       return this.http.get('http://localhost:3000/profile/'+id)
     }
 
 }

@@ -55,13 +55,22 @@ app.post('/login', async (req,res)=>{
 
 app.get('/users', async (req,res)=>{
     try {
-        
     var users = await User.find({},'-password -__v')
     res.send(users)
 
     } catch (error) {
         console.log(error)
         res.send(500)    
+    }
+})
+
+app.get('/profile/:id', async (req,res)=>{
+    try {
+        var user = await User.findById(req.params.id,'-password -__v')
+        res.send(user)
+    } catch (error) {
+        console.log(error)
+        res.send(500)        
     }
 })
 
