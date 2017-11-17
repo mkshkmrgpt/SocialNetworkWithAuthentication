@@ -9,6 +9,7 @@ import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { ApiService } from './api.service';
+import { AuthService } from "./auth.service";
 import { MessageComponent } from "./message.component";
 import { RegisterComponent } from "./register.components";
 import { LoginComponent } from "./login.component";
@@ -33,7 +34,7 @@ const router = [
     BrowserAnimationsModule,
     FormsModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
