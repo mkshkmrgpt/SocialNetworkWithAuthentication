@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   template:`
     <mat-toolbar>
       <span>Social Network</span>
+      <button mat-button routerLink="/users">Users</button>
       <span style= "flex: 1 1 auto"></span>
       <button mat-button routerLink="/register">Registor</button>
     </mat-toolbar>

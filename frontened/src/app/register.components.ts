@@ -12,11 +12,20 @@ import { AuthService } from "./auth.service";
         </mat-card-header>
     <form>
     <mat-input-container>
-        <input [(ngModel)]="registerData.email" matInput type = "text" name = "email">
+        <input [(ngModel)]="registerData.email" matInput type = "text" placeholder="Email" name = "email">
     </mat-input-container>
     <mat-input-container>
-        <input [(ngModel)]="registerData.password" matInput type = "password" name = "password">
+        <input [(ngModel)]="registerData.password" matInput type = "password" placeholder="Password" name = "password">
     </mat-input-container>
+    <br>
+    <mat-input-container>
+        <input [(ngModel)]="registerData.name" matInput type ="text" placeholder="Name" name="name">
+    </mat-input-container>
+    <br>
+    <mat-input-container>
+        <input [(ngModel)]="registerData.description" matInput type="textArea" placeholder="Description" name="description">
+    </mat-input-container>
+    <br>
     <button (click)="post()" mat-raised-button color = "primary">Register</button>
     </form>
     </mat-card>
