@@ -1,13 +1,12 @@
 var express = require('express')
+var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var cors = require('cors')
-var mongoose = require('mongoose')
-var jwt = require('jwt-simple')
-
+var auth = require('./auth.js')
 
 mongoose.Promise = Promise
+
 var app = express()
-var User = require('./model/User.js')
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -20,38 +19,9 @@ app.get('/posts',(req,res)=>{
     res.send(posts)
 })
 
-app.post('/register', (req,res)=>{
+app.post('/register', auth.register)
 
-    var userData  = req.body
-    var user = new User(userData)
-    console.log(user)
-
-    user.save((err,result)=>{
-        if(err){
-            console.log('Error creating user')
-        }
-    })  
-    res.sendStatus(200)
-})
-
-app.post('/login', async (req,res)=>{
-    var userData = req.body
-
-    var user = await User.findOne({
-        email:userData.email
-    })
-    
-    if(!user){
-        res.send({message:'Email or password is invalid'}).sendStatus(401)
-    }
-    if(userData.password!=user.password){
-        res.send({message:'Email or password is invalid'}).sendStatus(401)
-    }
-
-    var payload = {}
-    var token = jwt.encode(payload,'123456')
-    res.send({token:token}).sendStatus(200)
-})
+app.post('/login', auth.login)
 
 app.get('/users', async (req,res)=>{
     try {
