@@ -3,7 +3,9 @@ var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var cors = require('cors')
 var auth = require('./auth.js')
+
 var User = require('./model/User.js')
+var Post = require('./model/Post.js')
 
 mongoose.Promise = Promise
 
@@ -18,6 +20,18 @@ var posts = [
 ]
 app.get('/posts',(req,res)=>{
     res.send(posts)
+})
+
+app.post('/post',(req,res)=>{
+    var postData = req.body
+    var post = new Post(postData)
+
+    post.save((err, result)=>{
+        if(err){
+           console.log('error creating post')
+        }
+    })
+    res.sendStatus(200)
 })
 
 app.post('/register', auth.register)

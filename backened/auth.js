@@ -19,6 +19,7 @@ module.exports = {
     login: async (req, res) => {
         var loginData = req.body
 
+
         var user = await User.findOne({
             email: loginData.email
         })

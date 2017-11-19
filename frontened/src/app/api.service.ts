@@ -17,6 +17,11 @@ export class ApiService {
         })
     }
 
+    postMessage(postData){
+        this.http.post('http://localhost:3000/post', postData).subscribe(res=>{
+        })
+    }
+
     getUsers(){
         this.http.get('http://localhost:3000/users').subscribe(res=>{
             this.users = res.json();
