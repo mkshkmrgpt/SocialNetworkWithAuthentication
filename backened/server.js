@@ -3,6 +3,7 @@ var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var cors = require('cors')
 var auth = require('./auth.js')
+var User = require('./model/User.js')
 
 mongoose.Promise = Promise
 
