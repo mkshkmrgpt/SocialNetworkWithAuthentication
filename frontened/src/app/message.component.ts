@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from "./api.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'message',
@@ -12,11 +13,12 @@ import { ApiService } from "./api.service";
 export class MessageComponent {
     title = 'Message componenet';
 
-    constructor(private apiservice: ApiService) {
+    constructor(private apiservice: ApiService, private route:ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.apiservice.getMessages()
+        var id = this.route.snapshot.params.id
+        this.apiservice.getMessages(id)
     }
 
 }
