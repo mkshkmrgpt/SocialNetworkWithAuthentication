@@ -19,11 +19,11 @@ import { AuthService } from "./auth.service";
     </mat-input-container>
     <br>
     <mat-input-container>
-        <input [(ngModel)]="registerData.name" matInput type ="text" placeholder="Name" name="name">
+        <input [(ngModel)]="registerData.name" matInput type="text" placeholder="Name" name="name">
     </mat-input-container>
     <br>
-    <mat-input-container>
-        <input [(ngModel)]="registerData.description" matInput type="textArea" placeholder="Description" name="description">
+    <mat-input-container style="width: 100%">
+        <textarea [(ngModel)]="registerData.description" matInput placeholder="Description" name="description"></textarea>
     </mat-input-container>
     <br>
     <button (click)="post()" mat-raised-button color = "primary">Register</button>
