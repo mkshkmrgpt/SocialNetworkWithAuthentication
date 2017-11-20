@@ -33,7 +33,7 @@ module.exports = {
                 res.send({message:'Email or password is invalid'}).sendStatus(401)
             }
         })
-        var payload = {}
+        var payload = {sub:user._id}
         var token = jwt.encode(payload, '123456')
         res.send({ token: token }).sendStatus(200)
     }

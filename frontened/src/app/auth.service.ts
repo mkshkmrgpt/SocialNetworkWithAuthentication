@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 export class AuthService {
 
     constructor(private http:Http){}
-    
+
     registerUser(userData) {
         this.http.post("http://localhost:3000/register", userData).subscribe(res => {
             console.log(res)
@@ -15,6 +15,7 @@ export class AuthService {
     loginUser(userData) {
         this.http.post("http://localhost:3000/login", userData).subscribe(res => {
             console.log(res)
+            localStorage.setItem('token',res.json().token)
         })
     }
 }
