@@ -24,7 +24,7 @@ export class ApiService {
 
     getUsers(){
         this.http.get<any>('http://localhost:3000/users').subscribe(res=>{
-            this.users = res.json;
+            this.users = res;
         })
     }
 
