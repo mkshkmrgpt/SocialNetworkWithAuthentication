@@ -1,9 +1,10 @@
 var User = require('./model/User.js')
 var jwt = require('jwt-simple')
 var bcrypt = require('bcrypt-nodejs')
+var express = require('express')
+var router = express.Router()
 
-module.exports = {
-    register: (req, res) => {
+router.post('/register', (req, res) => {
 
         var userData = req.body
         var user = new User(userData)
@@ -15,8 +16,9 @@ module.exports = {
             }
         })
         res.sendStatus(200)
-    },
-    login: async (req, res) => {
+    })
+    
+ router.post('/login', async (req, res) => {
         var loginData = req.body
 
 
@@ -36,5 +38,5 @@ module.exports = {
         var payload = {sub:user._id}
         var token = jwt.encode(payload, '123456')
         res.send({ token: token }).sendStatus(200)
-    }
-}
+    })   
+module.exports = router
