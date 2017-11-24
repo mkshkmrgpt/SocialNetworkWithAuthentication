@@ -13,7 +13,7 @@ export class ApiService {
 
     getMessages(userId){
         this.http.get<any>('http://localhost:3000/posts/'+userId).subscribe(res=>{
-            this.messages = res.json
+            this.messages = res
         })
     }
 

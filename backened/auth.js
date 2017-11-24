@@ -38,5 +38,21 @@ router.post('/register', (req, res) => {
         var payload = {sub:user._id}
         var token = jwt.encode(payload, '123456')
         res.send({ token: token }).sendStatus(200)
-    })   
-module.exports = router
+    })
+
+var auth = {
+    router,
+    checkAuthorization : (req, res, next) =>{
+    if(!req.header('authorization'))
+        return res.status(401).send({message:'Unathorized missing auth token'})
+    var token = req.header('authorization').split(' ')[1]
+    
+    var payload = jwt.decode(token,'123456')
+    if(!payload)
+        return res.status(401).send({message:'Unauthorized access. Invalid auth token'})
+
+    req.userId = payload.sub
+    next() 
+    }
+}       
+module.exports = auth

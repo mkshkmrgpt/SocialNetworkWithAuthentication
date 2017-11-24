@@ -16,7 +16,7 @@ userSchema.pre('save', function(next){
         if(err)
             return err
         user.password = hash
-        next()
+        next() 
     })   
 })
 

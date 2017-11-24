@@ -15,9 +15,8 @@ var app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-
 app.get('/posts/:id', async (req, res) => {
-    try { 
+    try {   
         var author = req.params.id
         var posts = await Post.find({author})
         return res.send(posts)
@@ -27,9 +26,9 @@ app.get('/posts/:id', async (req, res) => {
     }
 })
 
-app.post('/post', (req, res) => {
+app.post('/post', auth.checkAuthorization, (req, res) => {
     var postData = req.body
-    postData.author = '5a0ffc73f54d202ef811389d'
+    postData.author = req.userId
     var post = new Post(postData)
 
     post.save((err, result) => {
@@ -40,7 +39,7 @@ app.post('/post', (req, res) => {
     res.sendStatus(200)
 })
 
-app.get('/users', async (req, res) => {
+app.get('/users',async (req, res) => {
     try {
         var users = await User.find({}, '-password -__v')
         res.send(users)
@@ -64,9 +63,10 @@ mongoose.connect('mongodb://test:test@ds257245.mlab.com:57245/social_network', {
     if (!err) {
         console.log('Connected to database')
     }else{
+
         console.log('Unable to connect database'+err)
     }
 })
 
-app.use('/auth',auth)
+app.use('/auth',auth.router)
 app.listen(3000)
