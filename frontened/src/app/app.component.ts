@@ -9,6 +9,8 @@ import { AuthService } from "./auth.service";
       <button mat-button routerLink="/users">Users</button>
       <span style= "flex: 1 1 auto"></span>
       <button mat-button *ngIf="!authService.isAuthenticated" routerLink="/register">Registor</button>
+      <button mat-button *ngIf="!authService.isAuthenticated" routerLink="/login">Login</button>
+      <button mat-button (click)="logout()" *ngIf="authService.isAuthenticated">Logout</button>
     </mat-toolbar>
     <router-outlet></router-outlet> 
   ` ,
@@ -18,4 +20,8 @@ export class AppComponent {
   title = 'app';
 
   constructor(private authService:AuthService){}
+
+  logout(){
+    this.authService.removeToken()
+  }
 }

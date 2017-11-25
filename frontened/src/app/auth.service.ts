@@ -25,6 +25,9 @@ export class AuthService {
         return localStorage.getItem(this.TOKEN_KEY)
     }
 
+    removeToken(){
+        localStorage.removeItem(this.TOKEN_KEY)
+    }
     get isAuthenticated(){
         return !!localStorage.getItem(this.TOKEN_KEY)
     }
