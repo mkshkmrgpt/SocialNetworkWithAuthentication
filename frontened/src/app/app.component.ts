@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from "./auth.service";
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
       <span>Social Network</span>
       <button mat-button routerLink="/users">Users</button>
       <span style= "flex: 1 1 auto"></span>
-      <button mat-button routerLink="/register">Registor</button>
+      <button mat-button *ngIf="!authService.isAuthenticated" routerLink="/register">Registor</button>
     </mat-toolbar>
     <router-outlet></router-outlet> 
   ` ,
@@ -16,4 +17,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
 
+  constructor(private authService:AuthService){}
 }

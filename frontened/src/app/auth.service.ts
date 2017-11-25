@@ -24,4 +24,8 @@ export class AuthService {
     getToken(){
         return localStorage.getItem(this.TOKEN_KEY)
     }
+
+    get isAuthenticated(){
+        return !!localStorage.getItem(this.TOKEN_KEY)
+    }
 }
