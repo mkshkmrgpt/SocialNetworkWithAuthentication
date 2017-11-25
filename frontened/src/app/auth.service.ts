@@ -9,8 +9,9 @@ export class AuthService {
     TOKEN_KEY = 'token'
     path = 'http://localhost:3000/auth/'
     registerUser(userData) {
-        this.http.post(this.path+"register", userData).subscribe(res => {
+        this.http.post<any>(this.path+"register", userData).subscribe(res => {
             console.log(res)
+            localStorage.setItem(this.TOKEN_KEY, res.token)
         })
     }
 
