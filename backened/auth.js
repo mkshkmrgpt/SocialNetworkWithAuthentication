@@ -7,21 +7,19 @@ var router = express.Router()
 router.post('/register', (req, res) => {
 
         var userData = req.body
-        var user = new User(userData)
+        var newUser = new User(userData)
         console.log(user)
 
-        user.save((err, result) => {
+        user.save((err, newUser) => {
             if (err) {
-                console.log('Error creating user')
+                return res.status(500).send({message:'Error saving user'})  
             }
         })
-        res.sendStatus(200)
+        createSendResponse(res,user)
     })
     
  router.post('/login', async (req, res) => {
         var loginData = req.body
-
-
         var user = await User.findOne({
             email: loginData.email
         })
@@ -35,11 +33,14 @@ router.post('/register', (req, res) => {
                 res.send({message:'Email or password is invalid'}).sendStatus(401)
             }
         })
+        createSendResponse(res,user)
+    })
+
+function createSendResponse(res, user) {
         var payload = {sub:user._id}
         var token = jwt.encode(payload, '123456')
         res.send({ token: token }).sendStatus(200)
-    })
-
+}
 var auth = {
     router,
     checkAuthorization : (req, res, next) =>{
